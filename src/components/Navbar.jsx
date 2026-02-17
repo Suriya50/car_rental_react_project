@@ -40,7 +40,7 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", path: "/", icon: <FaHome /> },
     { name: "About", path: "/about", icon: <FaInfoCircle /> },
-    { name: "Cars", path: "/cars", icon: <FaCar /> },
+    { name: "Carlist", path: "/cars", icon: <FaCar /> },
     { name: "Bookings", path: "/bookings", icon: <FaCalendarAlt /> },
     { name: "Contact", path: "/contact", icon: <FaPhone /> },
     { name: "Profile", path: "/profile", icon: <FaUser /> },

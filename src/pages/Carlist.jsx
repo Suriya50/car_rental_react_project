@@ -31,7 +31,7 @@ import car20 from "../assets/cars/lex2.png";
 import car21 from "../assets/cars/susui.png";
 
 // ================= BRAND LOGOS =================
-import wagan from "../assets/cars/logos/Volswagen.png";
+import woogan from "../assets/cars/logos/woolwagen.png";
 import tata from "../assets/cars/logos/tata.png";
 import susuki from "../assets/cars/logos/suzuki.png";
 import mahindra from "../assets/cars/logos/mahi.png";
@@ -44,7 +44,7 @@ import ran from "../assets/cars/logos/ran.png";
 import jagur from "../assets/cars/logos/jagurs.png";
 import lexus from "../assets/cars/logos/lexus.png";
 
-const Cars = () => {
+const Carlist = () => {  // Changed from Carlist to Cars
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCompany, setSelectedCompany] = useState("");
@@ -111,7 +111,7 @@ const Cars = () => {
 
   // ================= BRAND ARRAYS =================
   const normalLogos = [
-    { name: "Volkswagen", logo: wagan },
+    { name: "Volkswagen", logo: woogan },
     { name: "Tata", logo: tata },
     { name: "Suzuki", logo: susuki },
     { name: "Mahindra", logo: mahindra },
@@ -792,4 +792,4 @@ const Cars = () => {
   );
 };
 
-export default Cars;
+export default Carlist;  // Changed from Carlist to Cars
