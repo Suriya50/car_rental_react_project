@@ -6,7 +6,7 @@ import {
 } from "react-icons/fa";
 import carImage from "../assets/cars/logos/reg.png";
 
-const Register = () => {
+const Registers = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
@@ -255,4 +255,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Registers;

@@ -7,7 +7,7 @@ const App = () => {
   const location = useLocation();
 
   // Pages where footer should NOT appear
-  const noFooterPages = ['/login', '/register', '/profile'];
+  const noFooterPages = ['/login', '/register','profile'];
   const showFooter = !noFooterPages.includes(location.pathname);
 
   return (
