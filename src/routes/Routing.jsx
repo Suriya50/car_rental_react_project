@@ -4,10 +4,7 @@ import About from "../pages/About";
 import Cars from "../pages/Cars";
 import MyBookings from "../pages/MyBookings";
 import Contact from "../pages/Contact";
-import Profile from "../pages/Profile";
-import Register from "../pages/Register";
-import Login from "../pages/Login";
-// Note: Booking.jsx and Footer.jsx are not needed in routes
+import Profile from "../pages/Profile";  // This contains Login & Register
 
 const Routing = () => {
     return (
@@ -15,9 +12,7 @@ const Routing = () => {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/cars" element={<Cars />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/profile" element={<Profile />} />  // Shows login/register inside
             <Route path="/contact" element={<Contact />} />
             <Route path="/bookings" element={<MyBookings />} />
         </Routes>

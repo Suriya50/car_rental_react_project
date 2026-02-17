@@ -4,7 +4,7 @@ import {
   FaUser, FaEnvelope, FaPhone, FaLock, 
   FaArrowRight, FaCar, FaStar, FaGoogle, FaFacebook 
 } from "react-icons/fa";
-import carImage from "../assets/cars/logos/Register.png";
+import carImage from "../assets/cars/logos/reg.png";
 
 const Register = () => {
   const navigate = useNavigate();
