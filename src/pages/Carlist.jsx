@@ -108,7 +108,7 @@ const Carlist = () => {  // Changed from Carlist to Cars
     { id: 19, name: "Suzuki WagonR", model: "Hatchback", price: 4500, status: "Available", company: "Suzuki", img: car21, color: "Blue", fuel: "CNG", seats: 5, transmission: "Manual", rating: 4.2, trips: 300 },
     { id: 20, name: "Jaguar F-Pace", model: "SUV", price: 16000, status: "Available", company: "Jaguar", img: car18, color: "Gray", fuel: "Diesel", seats: 5, transmission: "Automatic", rating: 4.7, trips: 30 },
     { id: 21, name: "Lexus LM", model: "Luxury", price: 14500, status: "Booked", company: "Lexus", img: car20, color: "Silver", fuel: "Petrol", seats: 7, transmission: "Automatic", rating: 4.8, trips: 25 },
-    { id: 11, name: "Hyundai svu", model: "Hundi-100x", price: 6000, status: "Available", company: "Hyundai", img: car22, color: "Red", fuel: "Petrol", seats: 5, transmission: "Manual", rating: 4.4, trips: 220 },
+    { id: 22, name: "Hyundai svu", model: "Hundi-100x", price: 6000, status: "Available", company: "Hyundai", img: car22, color: "Red", fuel: "Petrol", seats: 5, transmission: "Manual", rating: 4.4, trips: 220 },
   ]);
 
   // ================= BRAND ARRAYS =================

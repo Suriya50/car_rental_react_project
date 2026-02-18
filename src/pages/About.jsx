@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { 
   FaCar, FaClock, FaMapMarkerAlt, FaHeadset, 
   FaShieldAlt, FaStar, FaUsers, FaAward,
@@ -9,6 +10,8 @@ import {
 } from "react-icons/fa";
 import { GiSelfLove, GiRoad } from "react-icons/gi";
 import abouts from "../assets/cars/auide.png";
+import aboutss from "../assets/cars/jagur2.png";
+import aboutsss from "../assets/cars/rovers.png";
 
 // Customer Images - High-quality professional photos
 const customerImages = [
@@ -99,6 +102,25 @@ const moreCustomers = [
 ];
 
 const About = () => {
+  // Slideshow state for hero section
+  const [currentSlide, setCurrentSlide] = useState(0);
+  
+  // Array of hero images
+  const heroSlides = [
+    { id: 1, image: abouts, alt: "Audi luxury car" },
+    { id: 2, image: aboutss, alt: "Jaguar luxury car" },
+    { id: 3, image: aboutsss, alt: "Range Rover luxury car" }
+  ];
+
+  // Auto slide change every 3 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % heroSlides.length);
+    }, 3000);
+
+    return () => clearInterval(timer); // Cleanup on unmount
+  }, [heroSlides.length]);
+
   const features = [
     {
       icon: <FaCar className="text-3xl" />,
@@ -206,16 +228,45 @@ const About = () => {
   return (
     <div className="w-full bg-gradient-to-b from-gray-50 to-white">
       
-      {/* Hero Section */}
-      <section className="relative w-full h-[500px] bg-gray-900">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <img
-            src={abouts}
-            alt="Luxury car fleet"
-            className="max-w-full max-h-full object-contain"
-          />
+      {/* Hero Section with Slideshow */}
+      <section className="relative w-full h-[500px] bg-gray-900 overflow-hidden">
+        {/* Slideshow Images */}
+        <div className="absolute inset-0">
+          {heroSlides.map((slide, index) => (
+            <div
+              key={slide.id}
+              className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+              style={{
+                opacity: index === currentSlide ? 1 : 0
+              }}
+            >
+              <img
+                src={slide.image}
+                alt={slide.alt}
+                className="w-full h-full object-contain"
+              />
+            </div>
+          ))}
         </div>
+        
+        {/* Overlay */}
         <div className="absolute inset-0 bg-black/50"></div>
+
+        {/* Slide Indicators */}
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
+          {heroSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`transition-all duration-300 ${
+                index === currentSlide 
+                  ? 'w-8 h-2 bg-orange-500 rounded-full' 
+                  : 'w-2 h-2 bg-white/50 hover:bg-white/80 rounded-full'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <div className="text-white max-w-3xl">
@@ -258,6 +309,7 @@ const About = () => {
         </div>
       </section>
 
+      {/* Rest of your component remains exactly the same */}
       {/* Stats Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

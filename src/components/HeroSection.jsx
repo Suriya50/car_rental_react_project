@@ -1,42 +1,90 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import heroImage from "../assets/images/Thar.jpg";
+import heroimage1 from "../assets/cars/bmmws.png";
+import heroImage2 from "../assets/cars/lex.png";
 
 const HeroSection = () => {
+  // Array of images for slideshow
+  const slides = [
+    { id: 1, image: heroImage },
+    { id: 2, image: heroimage1 },
+    { id: 3, image: heroImage2 }
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Auto slide change every 2 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+    }, 2000);
+
+    return () => clearInterval(timer); // Cleanup on unmount
+  }, [slides.length]);
+
   return (
-    <section className="relative w-full min-h-[500px] md:min-h-[600px] lg:h-[700px]">
-      {/* Background Image */}
+    <section className="relative w-full min-h-[500px] md:min-h-[600px] lg:h-[700px] overflow-hidden">
+      {/* Background Images with Fade Effect */}
       <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Hero"
-          className="w-full h-full object-cover"
-          loading="eager"
-        />
+        {slides.map((slide, index) => (
+          <div
+            key={slide.id}
+            className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+            style={{
+              opacity: index === currentSlide ? 1 : 0
+            }}
+          >
+            <img
+              src={slide.image}
+              alt={`Slide ${index + 1}`}
+              className="w-full h-full object-cover"
+              loading="eager"
+            />
+          </div>
+        ))}
+        {/* Overlay */}
         <div className="absolute inset-0 bg-black/60"></div>
+      </div>
+
+      {/* Slide Indicators */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentSlide(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              index === currentSlide 
+                ? 'w-8 bg-orange-500' 
+                : 'bg-white/50 hover:bg-white/80'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
       </div>
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full min-h-[500px] md:min-h-[600px] lg:h-[700px] flex items-center">
         <div className="text-white w-full">
           {/* Badge */}
-          <span className="inline-block bg-orange-500/20 text-orange-400 px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium mb-4 md:mb-6">
+          <span className="inline-block bg-orange-500/20 text-orange-400 px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium mb-4 md:mb-6 animate-fadeIn">
             ★ Trusted by 5000+ customers
           </span>
 
           {/* Heading */}
-          <h1 className="text-1xl sm:text-1xl md:text-1xl lg:text-5xl font-bold mb-3 md:mb-4">
+          <h1 className="text-1xl sm:text-1xl md:text-1xl lg:text-5xl font-bold mb-3 md:mb-4 animate-slideIn">
             Drive Your Dream
             <span className="block text-orange-400 mt-1 md:mt-2">Car Today!</span>
           </h1>
 
           {/* Description */}
-          <p className="text-base sm:text-lg md:text-xl text-gray-200 mb-6 md:mb-8 max-w-2xl">
+          <p className="text-base sm:text-lg md:text-xl text-gray-200 mb-6 md:mb-8 max-w-2xl animate-slideIn">
             Experience luxury and comfort with our premium car rental service. 
             Choose from 150+ vehicles at unbeatable prices.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-fadeIn">
             <Link
               to="/cars"
               className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 md:px-8 md:py-4 rounded-lg transition text-center text-sm sm:text-base"
@@ -52,7 +100,7 @@ const HeroSection = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mt-8 md:mt-12">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mt-8 md:mt-12 animate-fadeIn">
             <div className="text-center sm:text-left">
               <div className="text-xl sm:text-2xl font-bold text-orange-400">150+</div>
               <div className="text-xs sm:text-sm text-gray-300">Luxury Cars</div>
